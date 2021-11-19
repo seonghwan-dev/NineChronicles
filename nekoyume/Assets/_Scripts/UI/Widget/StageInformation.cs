@@ -32,7 +32,7 @@ namespace Nekoyume.UI
         [SerializeField] private List<StageRewardItemView> rewardsAreaItemViews = null;
         [SerializeField]private TextMeshProUGUI expText = null;
         [SerializeField]private TextMeshProUGUI closeButtonText = null;
-        [SerializeField] private SubmitButton submitButton = null;
+        [SerializeField] private ConditionalButton submitButton = null;
         [SerializeField] private WorldMapWorld world = null;
         [SerializeField] private GameObject buttonNotification = null;
         [SerializeField] private Button closeButton;
@@ -53,7 +53,7 @@ namespace Nekoyume.UI
             base.Initialize();
             monstersAreaText.text = L10nManager.Localize("UI_WORLD_MAP_MONSTERS");
             rewardsAreaText.text = L10nManager.Localize("UI_REWARDS");
-            submitButton.SetSubmitText(L10nManager.Localize("UI_WORLD_MAP_ENTER"));
+            submitButton.Text = L10nManager.Localize("UI_WORLD_MAP_ENTER");
 
             var tooltip = Find<ItemInformationTooltip>();
             foreach (var view in rewardsAreaItemViews)
@@ -78,7 +78,7 @@ namespace Nekoyume.UI
                 }).AddTo(gameObject);
             }
 
-            submitButton.OnSubmitClick
+            submitButton.OnSubmitSubject
                 .Subscribe(_ => GoToPreparation())
                 .AddTo(gameObject);
         }
